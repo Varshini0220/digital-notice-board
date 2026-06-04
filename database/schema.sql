@@ -1,5 +1,5 @@
 -- Table for storing notices
-CREATE TABLE Notices (
+CREATE TABLE dnb.Notices (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255),
   content TEXT,
@@ -9,20 +9,20 @@ CREATE TABLE Notices (
 );
 
 -- Table for categories
-CREATE TABLE Categories (
+CREATE TABLE dnb.Categories (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100)
 );
 
 -- Table for student subscriptions
-CREATE TABLE Subscriptions (
+CREATE TABLE dnb.Subscriptions (
   id SERIAL PRIMARY KEY,
   studentId INT,
   categoryId INT
 );
 
 -- Table for read/unread tracking
-CREATE TABLE ReadLogs (
+CREATE TABLE dnb.ReadLogs (
   id SERIAL PRIMARY KEY,
   studentId INT,
   noticeId INT,
@@ -30,7 +30,7 @@ CREATE TABLE ReadLogs (
 );
 
 -- Table for departments
-CREATE TABLE Departments (
+CREATE TABLE dnb.Departments (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100)
 );
