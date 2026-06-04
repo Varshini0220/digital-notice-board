@@ -9,11 +9,21 @@ app.use(cors());
 
 // PostgreSQL connection
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'digital_notice_board',
-  password: 'yourpassword', // replace with your actual password
-  port: 5432,
+  user: 'postgres',         	 // pgAdmin username
+  host: 'localhost',        	 // database server
+  database: 'DigitalNoticeDB',  // <-- your DB name
+  schema: 'dnb',				// <-- your Schema name
+  password: 'Varshini@02',  	// replace with your actual password
+  port: 5432,               	 // default PostgreSQL port
+});
+
+// Test DB connection
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.error('DB connection error:', err);
+  } else {
+    console.log('DB connected at:', res.rows[0].now);
+  }
 });
 
 // Route: Get all notices
