@@ -12,7 +12,7 @@ const pool = new Pool({
   user: 'postgres',                // pgAdmin username
   host: 'localhost',               // database server
   database: 'DigitalNoticeDB',// <-- your database name
-  password: 'Varshini@02',        // replace with your actual password
+  password: '',        // replace with your actual password
   port: 5432,
 });
 
