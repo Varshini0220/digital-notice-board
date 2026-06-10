@@ -1,41 +1,49 @@
-// React frontend entry point
-
-import React, { useEffect, useState } from 'react';
-
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
-
   const [notices, setNotices] = useState([]);
-
-  // Fetch notices from backend
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
-    axios.get('/api/notices')
-
-      .then(res => setNotices(res.data))
-
-      .catch(err => console.error(err));
-
+    axios
+      .get("http://localhost:5000/api/notices")
+      .then((response) => {
+        setNotices(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching notices:", error);
+        setLoading(false);
+      });
   }, []);
 
   return (
-<div>
-<h1>📢 Digital Notice Board</h1>
+    <div style={{ padding: "20px" }}>
+      <h1>📢 Digital Notice Board</h1>
 
-      {notices.map((notice, idx) => (
-<div key={idx}>
-<h3>{notice.title}</h3>
-<p>{notice.content}</p>
-</div>
-
-      ))}
-</div>
-
+      {loading ? (
+        <p>Loading notices...</p>
+      ) : notices.length === 0 ? (
+        <p>No notices available.</p>
+      ) : (
+        notices.map((notice, index) => (
+          <div
+            key={index}
+            style={{
+              border: "1px solid #ccc",
+              padding: "10px",
+              margin: "10px 0",
+              borderRadius: "5px",
+            }}
+          >
+            <h3>{notice.title}</h3>
+            <p>{notice.content}</p>
+          </div>
+        ))
+      )}
+    </div>
   );
-
 }
 
-export default App;
- 
+export default App; 
