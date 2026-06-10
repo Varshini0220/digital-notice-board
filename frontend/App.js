@@ -47,3 +47,14 @@ function App() {
 }
 
 export default App; 
+useEffect(() => {
+  axios
+    .get("http://localhost:5000/api/notices")
+    .then((response) => {
+      console.log("DATA RECEIVED:", response.data);
+      setNotices(response.data);
+    })
+    .catch((error) => {
+      console.error("ERROR:", error);
+    });
+}, []);
